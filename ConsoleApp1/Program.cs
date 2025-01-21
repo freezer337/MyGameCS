@@ -10,13 +10,13 @@ class Program
         Game();
     }
 
-    static void Game()
+    public static string CheckAnswer()
     {
-        Random random = new Random();
-
-        int currentPosition = 0;
-        int playerHealth = 100;
-        int damage = random.Next(1, 2);
+        string character = string.Empty;
+        string Joker = "Joker";
+        string Prison_guy = "Prison guy";
+        string Forest_guy = "Forest guy";
+        string Vilager = "Some sort of villager";
 
         Console.WriteLine("Welcome to my game!");
         Console.WriteLine(new string('*', 19));
@@ -26,13 +26,56 @@ class Program
         Console.WriteLine("Forest guy \n");
         Console.WriteLine("Prison guy \n");
         Console.WriteLine("Joker \n");
+
         string answerChar = Console.ReadLine();
+
+        switch (answerChar)
+        {
+            case "1":
+            case "Some sort of villager":
+                character = Vilager;
+                break;
+            case "2":
+            case "Forest guy":
+                character = Forest_guy;
+                break;
+            case "3":
+            case "Prison guy":
+                character = Prison_guy;
+                break;
+            case "4":
+            case "Joker":
+                character = Joker;
+                break;
+            default:
+                Console.WriteLine("Invalid choice, defaulting to 'Villager'.");
+                character = "Some sort of villager";
+                break;
+        }
+
+        return character;
+    }
+
+
+    static void Game()
+    {
+        Random random = new Random();
+        string character = CheckAnswer();
+
+        int currentPosition = 0;
+        int playerHealth = 100;
+        int damage = random.Next(1, 2);
+
+        string Joker = "Joker";
+        string Prison_guy = "Prison guy";
+        string Forest_guy = "Forest guy";
+        string Vilager = "Some sort of villager";
 
         List<string> map = new List<string> { "Village", "Abound school", "Jail", "Toilet", "Box" };
         List<string> mobs = new List<string> { "Zombie", "Coala", "guy", "Cow", "Bear" };
         List<string> art = new List<string> { "Water", "Iron", "Fire", "Sun", "Moon" };
         List<string> situatuation = new List<string> { "You felt down the hill and you get :", $"You got beated up by {mobs[currentPosition]}, while you was running and you get : ", "You felt into cave and you get : ", "You felt from waterfall and you get : " };
-
+        
         while (playerHealth > 0)
         {
             Console.WriteLine($"\nYour location: {map[currentPosition]}");
@@ -47,7 +90,7 @@ class Program
                 Console.WriteLine("\nChoose an action: Attack or Defend or Run?");
                 string action = Console.ReadLine();
                 
-                if (answerChar == "Some sort of villager")
+                if (character == Vilager)
                 {
                     if (action == "Attack")
                     {
@@ -104,7 +147,7 @@ class Program
                     }
                 }
  
-                if (answerChar == "Forest guy")
+                if (character == Forest_guy)
                 {
                     if (action == "Attack")
                     {
@@ -161,7 +204,7 @@ class Program
                     }
                 }
 
-                if (answerChar == "Prison guy")
+                if (character == Prison_guy)
                 {
                     if (action == "Attack")
                     {
@@ -217,7 +260,7 @@ class Program
                         Console.WriteLine($"Your HP is {playerHealth}");
                     }
                 }
-                if (answerChar == "Joker")
+                if (character == Joker)
                 {
                     if (action == "Attack")
                     {
@@ -324,3 +367,4 @@ class Program
         }
     }
 }
+
