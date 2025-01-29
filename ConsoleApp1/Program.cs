@@ -72,9 +72,10 @@ class Program
     }
 }
 
+#region Enemy
 public class Enemy
 {
-
+    // Enemy parameters
     public string Name { get; set; }
     public int Health { get; set; }
     public int Damage { get; set; }
@@ -93,6 +94,7 @@ public class Enemy
     public void TakeDamage()
     {
         Random random = new Random();
+
         int Attack = random.Next(MinDamage, MaxDamage);
         string character = Program.Character;
 
@@ -110,6 +112,7 @@ public class Enemy
         }
     }
 }
+#endregion
 
 class MainGame
 {
